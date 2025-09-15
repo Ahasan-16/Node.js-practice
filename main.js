@@ -2,11 +2,10 @@ var http = require('http');
 
 var fs=  require('fs');
 
-
 var server=http.createServer(function(req,res) {
 
-    //writeFile protme file er name, tarpor file e ki content takbe ,tarpor call back function
-    fs.writeFile('documentaion.txt', 'this is documentation', function (error, data) {
+    //writeFileSync protme file er name, tarpor file e ki content takbe ,r ei ta error return kore
+    var error=fs.writeFileSync('documentaion.txt', 'this is documentation form syncronous');
         if (error) {
             res.writeHead(404, {'Content-Type': 'text/plain'});
             res.write("file write fail");
@@ -16,7 +15,5 @@ var server=http.createServer(function(req,res) {
             res.write("file write success");
             res.end();
         }
-
-    })
 })
 server.listen(8080);
