@@ -3,17 +3,15 @@ var http = require('http');
 var fs=  require('fs');
 
 var server=http.createServer(function(req,res) {
-    //asyncronous way for checking file ache ki nai
-    //exists e protome file path jei ta ache ki na check korbo, porerta callback function
-    fs.exists('index.html', function(exists) {
+    //syncronous way for checking file ache ki nai
+    //existsSync e only file path jei ta ache ki na check korbo, ei ta exists kore ki na ei ta return kore
+    var exists=fs.existsSync('index.html');
         if (exists) {
             res.end("file exists");
         }
-        else
-        {
+        else {
             res.end("file not exists");
         }
-    })
 
 
 })
