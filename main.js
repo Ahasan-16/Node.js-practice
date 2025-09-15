@@ -1,26 +1,25 @@
-var http=require('http');
+var http = require('http');
+var URL=require('url');
+
 var server=http.createServer(function(req,res){
-    //kon request asle ki korbo oi ta handle korbo req parameter er maddome
-    if(req.url=="/")
-    {
-        //response ta patabo head abong body niye res parameter er maddome
-        res.writeHead(200,{'Content-Type':'text/html'});
-        res.write('<h1>This is a home page</h1>');
-        res.end();
-    }
-    else if(req.url=="/about")
-    {
-        res.writeHead(200,{'Content-Type':'text/html'});
-        res.write('<h1>This is a about page</h1>');
-        res.end();
-    }
-    else if(req.url=="/contact")
-    {
-        res.writeHead(200,{'Content-Type':'text/html'});
-        res.write('<h1>This is a contact page</h1>');
-        res.end();
-    }
+    //protome url ta copy kore dite hobe
+    var myURL="https://www.youtube.com/watch?v=JWnpfkA6V2A&list=PLkyGuIcLcmx2qXaZkjCL8-P78i2J5rDOa&index=12";
+
+    //parse method use korey url ta bibinno onso separate kora jai jeita object return kore
+    var myURLObj=URL.parse(myURL,true);
+
+    //object er maddome url er bibinno property deka jai
+    var urlHostName=myURLObj.hostname;
+    var urlPathName=myURLObj.pathname;
+    var urlSearchName=myURLObj.search;
+
+
+    res.writeHead(200,{'Content-Type':'text/html'});
+    res.write(`URL Host Name: ${urlHostName} <br>`);
+    res.write(`URL Path Name: ${urlPathName} <br>`);
+    res.write(`URL Search Name: ${urlSearchName} <br>`);
+    res.end();
 
 });
-server.listen(4040);
-console.log("server run successfully");
+
+server.listen(2020);
