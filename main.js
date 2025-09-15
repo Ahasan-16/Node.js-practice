@@ -1,17 +1,15 @@
 var http = require('http');
-
 var fs=  require('fs');
 
-
 var server=http.createServer(function(req,res) {
-    //asyncronous method e file handle
+    //syncronous method e file handle
     if (req.url === '/') {
-        //readFile e protom parameter path,tarpor callback function
-        fs.readFile('index.html', function (error, data) {
+        //readFileSync ektai parameter path, r ei ta path er data  return kore
+        var myData=fs.readFileSync('index.html');
             res.writeHead(200, {'Content-Type': 'text/html'});
-            res.write(data);
+            res.write(myData);
             res.end();
-        })
+
     }
 })
 server.listen(8080);
